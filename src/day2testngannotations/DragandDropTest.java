@@ -2,7 +2,13 @@ package day2testngannotations;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +27,9 @@ public class DragandDropTest {
 	  WebElement drop=driver.findElement(By.xpath("/html/body/div[2]"));
 	  Actions action=new Actions(driver);
 	  action.dragAndDrop(drag, drop).build().perform();
+	  File img=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	  FileUtils.copyFile(img,new File("E:\\NAZIA\\Infosys\\jqueryss.png"));
+	  Thread.sleep(3000);
 	  
   }
   @BeforeMethod

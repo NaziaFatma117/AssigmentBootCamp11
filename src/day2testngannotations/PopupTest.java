@@ -2,7 +2,13 @@ package day2testngannotations;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -16,6 +22,8 @@ public class PopupTest {
 	  String title=driver.switchTo().alert().getText();
 	  System.out.println(title);
 	  driver.switchTo().alert().accept();
+	  File img=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	  FileUtils.copyFile(img,new File("E:\\NAZIA\\Infosys\\jqueryss.png"));
 	  Thread.sleep(3000);
 	  driver.switchTo().window(driver.getWindowHandle());
 	  driver.findElement(By.id("button4")).click();

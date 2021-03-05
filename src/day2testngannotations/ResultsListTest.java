@@ -3,9 +3,13 @@ package day2testngannotations;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +20,8 @@ public class ResultsListTest {
   @Test
   public void f() throws Exception {
 	  driver.findElement(By.name("q")).sendKeys("Selenium");
+	  File img=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	  FileUtils.copyFile(img,new File("E:\\NAZIA\\Infosys\\jqueryss.png"));
 	  Thread.sleep(3000);
 	  WebElement we=driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[2]/div[2]/ul"));
 	  List<WebElement> list=driver.findElements(By.tagName("li"));

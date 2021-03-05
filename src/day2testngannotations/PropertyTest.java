@@ -8,6 +8,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -30,6 +33,9 @@ public class PropertyTest {
 	  driver=new ChromeDriver();
 	  Thread.sleep(3000);
 	  driver.get(prop.getProperty("url"));
+	  File img=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	  FileUtils.copyFile(img,new File("E:\\NAZIA\\Infosys\\jqueryss.png"));
+	  Thread.sleep(3000);
   }
 
   @AfterMethod

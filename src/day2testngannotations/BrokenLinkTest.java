@@ -3,11 +3,16 @@ package day2testngannotations;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -55,11 +60,13 @@ public class BrokenLinkTest {
 	  }
   }
   @BeforeMethod
-  public void beforeMethod() {
+  public void beforeMethod() throws Exception {
 	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\Nazia\\Documents\\chromedriver.exe");
 	  driver=new ChromeDriver();
 	  driver.get("https://www.zlti.com/");
 	  driver.manage().window().maximize();
+	  File img=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	  FileUtils.copyFile(img,new File("E:\\NAZIA\\Infosys\\ss7.png"));
   }
 
   @AfterMethod
